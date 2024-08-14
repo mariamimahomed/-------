@@ -1,0 +1,301 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Header styles */
+header {
+    background-color: #000435;
+    /* Dark Blue */
+    color: #ECF0F1;
+    /* Light Grey */
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #ECF0F1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #1ABC9C;
+    /* Teal Green */
+}
+
+/* Main content styles */
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: #104727;
+    /* Vibrant Green */
+    border-bottom: 2px solid #27AE60;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature {
+    background: #FFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.feature h3 {
+    color: #2980B9;
+    /* Sky Blue */
+    margin-bottom: 0.5rem;
+}
+
+/* Button styles */
+button {
+    background-color: #F39C12;
+    /* Bright Yellow */
+    border: none;
+    color: #FFF;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    /* Rounded corners */
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #F1C40F;
+    /* Light Yellow */
+    transform: translateY(-2px);
+    /* Slight lift effect */
+}
+
+button:active {
+    background-color: #E1B12C;
+    /* Darker Yellow */
+    transform: translateY(0);
+    /* No lift effect */
+}
+
+/* Forms and inputs */
+form {
+    margin-bottom: 2rem;
+    background: #FFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2C3E50;
+    /* Dark Blue */
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #BDC3C7;
+    /* Light Grey */
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* Ensures padding and border are included in the width */
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Dropdown styles */
+select {
+    -webkit-appearance: none;
+    /* Remove default dropdown styles in WebKit browsers */
+    -moz-appearance: none;
+    /* Remove default dropdown styles in Firefox */
+    appearance: none;
+    /* Remove default dropdown styles in modern browsers */
+    background-color: #FFF;
+    background-image: linear-gradient(45deg, transparent 50%, #BDC3C7 50%),
+        linear-gradient(135deg, #BDC3C7, #BDC3C7);
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1.5em auto;
+}
+
+select:focus {
+    outline: none;
+    /* Remove default focus outline */
+    border-color: #27AE60;
+    /* Vibrant Green */
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+    /* Subtle shadow on focus */
+}
+
+/* Chat styles */
+#chat-box {
+    border: 1px solid #BDC3C7;
+    border-radius: 4px;
+    background: #FFF;
+    padding: 1rem;
+    height: 300px;
+    overflow-y: auto;
+}
+
+#message-input {
+    width: calc(100% - 80px);
+    /* Adjusted for button width */
+    padding: 0.75rem;
+    border: 1px solid #BDC3C7;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+}
+
+#send-button {
+    background-color: #27AE60;
+    /* Vibrant Green */
+    border: none;
+    color: #FFF;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#send-button:hover {
+    background-color: #1E8449;
+    /* Darker Green */
+    transform: translateY(-2px);
+}
+
+#send-button:active {
+    background-color: #186A3B;
+    /* Even Darker Green */
+    transform: translateY(0);
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 1em 0;
+}
+
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-right: 20px;
+    position: relative;
+}
+
+.profile-icon-container {
+    margin-left: auto;
+    /* Push the profile icon to the right side */
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+.profile-icon-container:hover .dropdown-menu {
+    display: block;
+}
+
+
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.profile-icon,
+.chat-icon {
+    margin-left: 15px;
+}
+
+.profile-image,
+.chat-image {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    border-radius: 50%;
+}

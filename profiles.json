@@ -1,0 +1,410 @@
+[
+    {
+        "user_id": 1,
+        "parent_age": "22",
+        "child_age": "4",
+        "gender": "male",
+        "diagnosis": "autism",
+        "region": "north"
+    },
+    {
+        "user_id": 2,
+        "parent_age": "22",
+        "child_age": "4",
+        "gender": "male",
+        "diagnosis": "autism",
+        "region": "north"
+    },
+    {
+        "user_id": 3,
+        "parent_age": "40",
+        "child_age": "10",
+        "gender": "female",
+        "diagnosis": "pdd-nos",
+        "region": "east"
+    },
+    {
+        "user_id": 4,
+        "parent_age": "28",
+        "child_age": "7",
+        "gender": "male",
+        "diagnosis": "rett",
+        "region": "west"
+    },
+    {
+        "user_id": 5,
+        "parent_age": "35",
+        "child_age": "7",
+        "gender": "female",
+        "diagnosis": "aspergers",
+        "region": "west"
+    },
+    {
+        "user_id": 6,
+        "parent_age": "29",
+        "child_age": "5",
+        "gender": "male",
+        "diagnosis": "aspergers",
+        "region": "west"
+    },
+    {
+        "user_id": 7,
+        "parent_age": "33",
+        "child_age": "7",
+        "gender": "female",
+        "diagnosis": "rett",
+        "region": "west"
+    },
+    {
+        "user_id": 8,
+        "parent_age": "32",
+        "child_age": "7",
+        "gender": "male",
+        "diagnosis": "rett",
+        "region": "west"
+    },
+    {
+        "user_id": 9,
+        "parent_age": "30",
+        "child_age": "7",
+        "gender": "female",
+        "diagnosis": "rett",
+        "region": "west"
+    },
+    {
+        "user_id": 10,
+        "parent_age": "31",
+        "child_age": "5",
+        "gender": "male",
+        "diagnosis": "cdd",
+        "region": "north"
+    },
+    {
+        "user_id": 11,
+        "parent_age": "34",
+        "child_age": "7",
+        "gender": "female",
+        "diagnosis": "autism",
+        "region": "north"
+    },
+    {
+        "user_id": 12,
+        "parent_age": "27",
+        "child_age": "3",
+        "gender": "male",
+        "diagnosis": "autism",
+        "region": "east"
+    },
+    {
+        "user_id": 13,
+        "parent_age": "36",
+        "child_age": "9",
+        "gender": "female",
+        "diagnosis": "pdd-nos",
+        "region": "west"
+    },
+    {
+        "user_id": 14,
+        "parent_age": "39",
+        "child_age": "6",
+        "gender": "male",
+        "diagnosis": "pdd-nos",
+        "region": "south"
+    },
+    {
+        "user_id": 15,
+        "parent_age": "31",
+        "child_age": "5",
+        "gender": "female",
+        "diagnosis": "aspergers",
+        "region": "north"
+    },
+    {
+        "user_id": 16,
+        "parent_age": "35",
+        "child_age": "7",
+        "gender": "male",
+        "diagnosis": "aspergers",
+        "region": "east"
+    },
+    {
+        "user_id": 17,
+        "parent_age": "28",
+        "child_age": "4",
+        "gender": "female",
+        "diagnosis": "rett",
+        "region": "west"
+    },
+    {
+        "user_id": 18,
+        "parent_age": "34",
+        "child_age": "6",
+        "gender": "male",
+        "diagnosis": "rett",
+        "region": "south"
+    },
+    {
+        "user_id": 19,
+        "parent_age": "32",
+        "child_age": "5",
+        "gender": "female",
+        "diagnosis": "cdd",
+        "region": "north"
+    },
+    {
+        "user_id": 20,
+        "parent_age": "30",
+        "child_age": "7",
+        "gender": "male",
+        "diagnosis": "cdd",
+        "region": "east"
+    },
+    {
+        "user_id": 21,
+        "parent_age": "23",
+        "child_age": "4",
+        "gender": "female",
+        "diagnosis": "autism",
+        "region": "south"
+    },
+    {
+        "user_id": 22,
+        "parent_age": "24",
+        "child_age": "4",
+        "gender": "male",
+        "diagnosis": "autism",
+        "region": "west"
+    },
+    {
+        "user_id": 23,
+        "parent_age": "45",
+        "child_age": "10",
+        "gender": "male",
+        "diagnosis": "pdd-nos",
+        "region": "north"
+    },
+    {
+        "user_id": 24,
+        "parent_age": "38",
+        "child_age": "6",
+        "gender": "female",
+        "diagnosis": "pdd-nos",
+        "region": "north"
+    },
+    {
+        "user_id": 25,
+        "parent_age": "36",
+        "child_age": "7",
+        "gender": "female",
+        "diagnosis": "aspergers",
+        "region": "north"
+    },
+    {
+        "user_id": 26,
+        "parent_age": "29",
+        "child_age": "5",
+        "gender": "male",
+        "diagnosis": "aspergers",
+        "region": "east"
+    },
+    {
+        "user_id": 27,
+        "parent_age": "33",
+        "child_age": "8",
+        "gender": "male",
+        "diagnosis": "rett",
+        "region": "south"
+    },
+    {
+        "user_id": 28,
+        "parent_age": "35",
+        "child_age": "6",
+        "gender": "female",
+        "diagnosis": "rett",
+        "region": "west"
+    },
+    {
+        "user_id": 29,
+        "parent_age": "31",
+        "child_age": "4",
+        "gender": "female",
+        "diagnosis": "cdd",
+        "region": "east"
+    },
+    {
+        "user_id": 30,
+        "parent_age": "32",
+        "child_age": "5",
+        "gender": "male",
+        "diagnosis": "cdd",
+        "region": "north"
+    },
+    {
+        "user_id": 31,
+        "parent_age": "24",
+        "child_age": "4",
+        "gender": "female",
+        "diagnosis": "autism",
+        "region": "east"
+    },
+    {
+        "user_id": 32,
+        "parent_age": "25",
+        "child_age": "4",
+        "gender": "male",
+        "diagnosis": "autism",
+        "region": "south"
+    },
+    {
+        "user_id": 33,
+        "parent_age": "40",
+        "child_age": "10",
+        "gender": "female",
+        "diagnosis": "pdd-nos",
+        "region": "west"
+    },
+    {
+        "user_id": 34,
+        "parent_age": "38",
+        "child_age": "6",
+        "gender": "male",
+        "diagnosis": "pdd-nos",
+        "region": "east"
+    },
+    {
+        "user_id": 35,
+        "parent_age": "36",
+        "child_age": "7",
+        "gender": "female",
+        "diagnosis": "aspergers",
+        "region": "south"
+    },
+    {
+        "user_id": 36,
+        "parent_age": "30",
+        "child_age": "5",
+        "gender": "male",
+        "diagnosis": "aspergers",
+        "region": "north"
+    },
+    {
+        "user_id": 37,
+        "parent_age": "33",
+        "child_age": "8",
+        "gender": "female",
+        "diagnosis": "rett",
+        "region": "east"
+    },
+    {
+        "user_id": 38,
+        "parent_age": "35",
+        "child_age": "6",
+        "gender": "male",
+        "diagnosis": "rett",
+        "region": "north"
+    },
+    {
+        "user_id": 39,
+        "parent_age": "31",
+        "child_age": "4",
+        "gender": "female",
+        "diagnosis": "cdd",
+        "region": "south"
+    },
+    {
+        "user_id": 40,
+        "parent_age": "32",
+        "child_age": "5",
+        "gender": "male",
+        "diagnosis": "cdd",
+        "region": "west"
+    },
+    {
+        "user_id": 41,
+        "parent_age": "25",
+        "child_age": "4",
+        "gender": "female",
+        "diagnosis": "autism",
+        "region": "west"
+    },
+    {
+        "user_id": 42,
+        "parent_age": "26",
+        "child_age": "4",
+        "gender": "male",
+        "diagnosis": "autism",
+        "region": "north"
+    },
+    {
+        "user_id": 43,
+        "parent_age": "44",
+        "child_age": "10",
+        "gender": "female",
+        "diagnosis": "pdd-nos",
+        "region": "west"
+    },
+    {
+        "user_id": 44,
+        "parent_age": "37",
+        "child_age": "6",
+        "gender": "male",
+        "diagnosis": "pdd-nos",
+        "region": "south"
+    },
+    {
+        "user_id": 45,
+        "parent_age": "35",
+        "child_age": "7",
+        "gender": "female",
+        "diagnosis": "aspergers",
+        "region": "north"
+    },
+    {
+        "user_id": 46,
+        "parent_age": "28",
+        "child_age": "5",
+        "gender": "male",
+        "diagnosis": "aspergers",
+        "region": "east"
+    },
+    {
+        "user_id": 47,
+        "parent_age": "33",
+        "child_age": "8",
+        "gender": "female",
+        "diagnosis": "rett",
+        "region": "south"
+    },
+    {
+        "user_id": 48,
+        "parent_age": "34",
+        "child_age": "6",
+        "gender": "male",
+        "diagnosis": "rett",
+        "region": "north"
+    },
+    {
+        "user_id": 49,
+        "parent_age": "30",
+        "child_age": "4",
+        "gender": "female",
+        "diagnosis": "cdd",
+        "region": "east"
+    },
+    {
+        "user_id": 50,
+        "parent_age": "32",
+        "child_age": "5",
+        "gender": "male",
+        "diagnosis": "cdd",
+        "region": "west"
+    },
+    {
+        "user_id": 78,
+        "parent_age": "30",
+        "child_age": "5",
+        "gender": "male",
+        "diagnosis": "autism",
+        "region": "south"
+    }
+]

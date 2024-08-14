@@ -1,0 +1,902 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+body {
+    background-color: #f2f2f2;
+    /* Updated background color */
+    color: #333;
+    /* Dark text color for readability */
+    margin: 0;
+    padding-top: 80px;
+    /* Space for fixed navbar */
+}
+
+.header {
+    text-align: center;
+    width: 100%;
+    height: 100vh; /* Set the header to take up full viewport height */
+    background-image: url('/static/images/new_final.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    position: relative;
+    z-index: 1;
+    margin-top: -5rem; /* Adjust to pull the nav into the header */
+    padding: 10px 8%;
+}
+
+nav {
+    background-color: transparent; /* Start with a transparent nav */
+    display: flex;
+    padding: 1rem 2rem;
+    color: #060505;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+nav.scrolled {
+    background-color: #bdd1d038; /* Stable color when scrolled */
+}
+
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav .right {
+    margin-left: auto;
+}
+
+nav ul li a {
+    display: inline-block;
+    padding: 10px;
+    background-color: transparent;
+    /* Transparent by default */
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 2px solid transparent;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Slightly transparent white on hover */
+    color: rgb(22, 24, 73);
+    border-color: white;
+    /* Optional: Add a border color on hover */
+}
+
+
+#navbar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgb(22, 24, 73);
+    border-color: white;
+}
+
+nav a.logo {
+
+    background-color: transparent;
+    /* No button styling for the logo */
+    padding: 0;
+    /* Remove padding from logo */
+}
+
+#navbar .logo img {
+    max-width: 100px;
+    height: auto;
+}
+
+.logo {
+    width: 150px;
+    cursor: pointer;
+}
+
+.header-content {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin-top: 100px;
+}
+
+.header-content h1 {
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 600;
+    max-width: 650px;
+    color: #333;
+    /* Darker text for readability */
+}
+
+.header-content h3 {
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #555;
+    /* Medium-dark text for contrast */
+}
+
+.features {
+    padding: 50px 12%;
+    font-size: 22px;
+    background-color: #ffffff;
+    /* White background for contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 50px 0;
+    justify-content: center;
+}
+
+.text-col,
+.img-col {
+    flex-basis: 45%;
+    /* Adjusted for better layout */
+    margin-bottom: 20px;
+}
+
+.img-col img {
+    display: block;
+    width: 90%;
+    margin: auto;
+    max-width: 100%;
+    /* Ensure image doesn't exceed container */
+    height: auto;
+}
+
+.features h2 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+    /* Darker blue */
+}
+
+.faq {
+    padding: 10px 12%;
+    text-align: center;
+    font-size: 18px;
+    background-color: #ffffff;
+    /* White background */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+.faq h2 {
+    font-size: 30px;
+    font-weight: 500;
+    color: #333;
+    /* Darker blue */
+}
+
+.accordion {
+    margin: 60px auto;
+    width: 100%;
+    max-width: 750px;
+}
+
+.accordion li {
+    list-style: none;
+    width: 100%;
+    padding: 5px;
+}
+
+.accordion li label {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #648dae;
+    /* Slightly darker blue */
+    margin-bottom: 2px;
+    cursor: pointer;
+    position: relative;
+    border-radius: 4px;
+    color: #fff;
+    /* Ensure text is visible */
+}
+
+label::after {
+    content: '+';
+    font-size: 34px;
+    position: absolute;
+    right: 20px;
+    transition: transform 0.5s;
+}
+
+.accordion .content {
+    background-color: #fff;
+    /* White background for content */
+    text-align: left;
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s, padding 0.5s;
+}
+
+.accordion input[type="radio"]:checked+label+.content {
+    max-height: 600px;
+    padding: 30px 20px;
+}
+
+.accordion input[type="radio"]:checked+label::after {
+    transform: rotate(135deg);
+}
+
+.faq small {
+    font-size: 13px;
+}
+
+.faq .email-signup {
+    max-width: 600px;
+    margin: 20px auto 60px;
+}
+
+.footer {
+    padding: 50px 15% 10px;
+    border-top: 6px solid #ddd;
+    /* Light grey border */
+    color: #555;
+    background-color: #f2f1ec;
+    /* Match background */
+    text-align: center;
+    text-align: left;
+    /* Align text to the left */
+    border-top: 6px solid #333;
+    /* Darker border */
+    color: #777;
+}
+
+.footer h2 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    color: #333;
+    margin-bottom: 20px;
+    /* Adjusted margin */
+}
+
+.footer .col {
+    flex-basis: 25%;
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+.footer .col a {
+    display: block;
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.footer .row {
+    align-items: flex-start;
+    padding: 10px 0px;
+}
+
+.footer .lang-btn {
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 3px;
+    background-color: #648dae;
+    /* Slightly darker blue */
+    color: #fff;
+}
+
+.copyright-text {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+@media only screen and (max-width: 600px) {
+    .logo {
+        width: 100px;
+    }
+
+    nav button {
+        padding: 5px 10px;
+    }
+
+    nav .lang-btn {
+        padding: 4px 8px;
+    }
+
+    .header-content {
+        position: unset;
+        transform: none;
+        padding-top: 150px;
+    }
+
+    .header-content h1 {
+        font-size: 30px;
+    }
+
+    .text-col,
+    .img-col {
+        flex-basis: 100%;
+    }
+
+    .features h2 {
+        font-size: 30px;
+    }
+
+    .features p {
+        font-size: 15px;
+    }
+
+    .row:nth-child(2),
+    .row:nth-child(4) {
+        flex-direction: column-reverse;
+    }
+
+    .features .row {
+        padding: 10px 0;
+    }
+
+    .faq h2 {
+        font-size: 20px;
+    }
+
+    .accordion .content {
+        font-size: 14px;
+    }
+
+    .accordion li label {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    label::after {
+        font-size: 22px;
+    }
+}
+
+
+
+.lang-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.lang-buttons button {
+    flex: 1;
+    margin-right: 5px;
+    padding: 10px;
+    background-color: #3a6e7c;
+    /* Green color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.lang-buttons button.selected {
+    background-color: lightblue;
+    /* Blue color for selected */
+    color: black;
+}
+
+.lang-buttons button:last-child {
+    margin-right: 0;
+}
+
+button {
+    padding: 10px;
+    background-color: #3a6e7c;
+    /* Green color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: lightblue;
+    color: black;
+}
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Chat styles */
+#chat-box {
+    border: 1px solid #BDC3C7;
+    border-radius: 4px;
+    background: #FFF;
+    padding: 1rem;
+    height: 300px;
+    overflow-y: auto;
+}
+
+#message-input {
+    width: calc(100% - 80px);
+    /* Adjusted for button width */
+    padding: 0.75rem;
+    border: 1px solid #BDC3C7;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+}
+
+
+/* Forms and inputs */
+form {
+    margin-bottom: 2rem;
+    background: #FFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2C3E50;
+    /* Dark Blue */
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #BDC3C7;
+    /* Light Grey */
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* Ensures padding and border are included in the width */
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Dropdown styles */
+select {
+    -webkit-appearance: none;
+    /* Remove default dropdown styles in WebKit browsers */
+    -moz-appearance: none;
+    /* Remove default dropdown styles in Firefox */
+    appearance: none;
+    /* Remove default dropdown styles in modern browsers */
+    background-color: #FFF;
+    background-image: linear-gradient(45deg, transparent 50%, #BDC3C7 50%),
+        linear-gradient(135deg, #BDC3C7, #BDC3C7);
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1.5em auto;
+}
+
+select:focus {
+    outline: none;
+    /* Remove default focus outline */
+    border-color: #27AE60;
+    /* Vibrant Green */
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+    /* Subtle shadow on focus */
+}
+/* Dropdown Container */
+.icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Button Styles for Profile and Language Icons */
+.icon-container button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.icon-container button:focus {
+    outline: none;
+}
+
+/* Dropdown Menu Styles */
+.icon-container .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 150px; /* Set a minimum width */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0; /* Align dropdown to the right */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    text-align: left; /* Align text to the left */
+}
+
+.icon-container .dropdown-content a {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+.icon-container .dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show Dropdown on Hover */
+.icon-container:hover .dropdown-content {
+    display: block;
+}
+
+/* Icon Styles */
+.icon-container .fa-globe,
+.icon-container .fa-user,
+.icon-container .fa-comment {
+    font-size: 24px;
+    color: #333;
+}
+
+
+/* Conditions list styles */
+.conditions-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.condition-item {
+    margin: 10px 0;
+}
+
+.condition-item a {
+    display: block;
+    width: 700px;
+    padding: 15px;
+    background-color: #f4f4f4;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.condition-item a:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+
+.modal-content {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 20px;
+    text-align: center;
+}
+
+.modal-content.active {
+    display: block;
+}
+
+.modal-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Add an overlay behind the modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.modal-overlay.active {
+    display: block;
+}
+
+  /* Chat section styling */
+  #chat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 87vh;
+    text-align: center;
+}
+
+#chat-window {
+    background-color: #e3f2fd;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    height: 500px;
+    overflow-y: scroll;
+    width: 80%;
+    max-width: 600px;
+    margin-bottom: 1rem;
+}
+
+#messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#messages li {
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#chat-form {
+    display: flex;
+    width: 80%;
+    max-width: 600px;
+    margin-top: 10px;
+}
+
+#chat-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+#chat-form button {
+    padding: 10px;
+    background-color: #3a6e7c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#chat-form button:hover {
+    background-color: lightblue;
+    color: black;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+    display: none;
+    height: 300px;
+}
+
+.form-group.active {
+    display: block;
+}
+
+.form-group div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.form-group input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #3a6e7c;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.form-group input[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: #3a6e7c;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.next-btn,
+.prev-btn {
+    width: 45%;
+    padding: 10px;
+    background-color: #3a6e7c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.prev-btn {
+    margin-right: 4%;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #3a6e7c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.next-btn:hover,
+.prev-btn:hover,
+.submit-btn:hover {
+    background-color: lightblue;
+    color: black;
+}
+
+
+.match-submit-btn {
+    padding: 10px;
+    background-color: #3a6e7c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.match-submit-btn:hover {
+    background-color: lightblue;
+    color: black;
+}
+
+ul.match-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+li.match-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.match-link {
+    padding: 8px 16px;
+    background-color: #3a6e7c;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.match-link:hover {
+    background-color: lightblue;
+    color: black;
+}
+
+.no-matches {
+    font-size: 16px;
+    color: #ff0000;
+    margin-top: 20px;
+    text-align: center;
+}

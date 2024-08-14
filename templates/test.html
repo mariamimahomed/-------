@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="./Assets/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <link rel="stylesheet" href="/static/css/styleee2.css"> 
+    <title id="test_title"></title>
+    <style>
+        /* General Styles */
+        input[type="radio"] {
+            display: block;
+        }
+
+        label::after {
+            content: '';
+            font-size: 34px;
+            position: absolute;
+            right: 20px;
+            transition: transform 0.5s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto 50px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <a href="/" class="logo">
+            <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+        </a>
+        <ul class="right">
+            <li><a style="color: rgb(0, 0, 0);" id="nav_about_homepage" href="/about"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_dashboard_homepage" href="/dashboard"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_test_homepage" href="/predict"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_conditions_homepage" href="/conditions"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_login_homepage" href="/login"></a></li>
+            <!-- Language Switcher Dropdown -->
+            <div class="language-switcher icon-container">
+                <button><i class="fas fa-globe"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setLanguage('en')">English</a>
+                    <a href="#" onclick="setLanguage('ar')">العربية</a>
+                </div>
+            </div>
+        </ul>
+    </nav>
+
+    <div class="header"><br><br>
+        <br><br><br><br><br><br><h1 id="test_heading"></h1>
+        <div class="container">
+            <button class="start-btn" onclick="startTest()" id="start_button"></button>
+
+            <form method="post" id="quizForm">
+                <!-- Question 1 -->
+                <div class="form-group" id="question1">
+                    <label id="question1_text"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="A1_Always" name="A1" value="0" required>
+                            <span id="A1_Always_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A1_Usually" name="A1" value="0" required>
+                            <span id="A1_Usually_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A1_Sometimes" name="A1" value="1" required>
+                            <span id="A1_Sometimes_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A1_Rarly" name="A1" value="1" required>
+                            <span id="A1_Rarly_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A1_Never" name="A1" value="1" required>
+                            <span id="A1_Never_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="next-btn" onclick="nextQuestion(1)" id="next_button1"></button>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="form-group" id="question2">
+                    <label id="question2_text"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="A2_Always" name="A2" value="0" required>
+                            <span id="A2_Always_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A2_Usually" name="A2" value="0" required>
+                            <span id="A2_Usually_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A2_Sometimes" name="A2" value="1" required>
+                            <span id="A2_Sometimes_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A2_Rarly" name="A2" value="1" required>
+                            <span id="A2_Rarly_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A2_Never" name="A2" value="1" required>
+                            <span id="A2_Never_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(2)" id="prev_button2"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(2)" id="next_button2"></button>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="form-group" id="question3">
+                    <label id="question3_text"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="A3_Always" name="A3" value="0" required>
+                            <span id="A3_Always_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A3_Usually" name="A3" value="0" required>
+                            <span id="A3_Usually_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A3_Sometimes" name="A3" value="1" required>
+                            <span id="A3_Sometimes_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A3_Rarly" name="A3" value="1" required>
+                            <span id="A3_Rarly_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A3_Never" name="A3" value="1" required>
+                            <span id="A3_Never_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(3)" id="prev_button3"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(3)" id="next_button3"></button>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="form-group" id="question4">
+                    <label id="question4_text"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="A4_Always" name="A4" value="0" required>
+                            <span id="A4_Always_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A4_Usually" name="A4" value="0" required>
+                            <span id="A4_Usually_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A4_Sometimes" name="A4" value="1" required>
+                            <span id="A4_Sometimes_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A4_Rarly" name="A4" value="1" required>
+                            <span id="A4_Rarly_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A4_Never" name="A4" value="1" required>
+                            <span id="A4_Never_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(4)" id="prev_button4"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(4)" id="next_button4"></button>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="form-group" id="question5">
+                    <label id="question5_text"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="A5_Always" name="A5" value="0" required>
+                            <span id="A5_Always_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A5_Usually" name="A5" value="0" required>
+                            <span id="A5_Usually_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A5_Sometimes" name="A5" value="1" required>
+                            <span id="A5_Sometimes_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A5_Rarly" name="A5" value="1" required>
+                            <span id="A5_Rarly_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A5_Never" name="A5" value="1" required>
+                            <span id="A5_Never_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(5)" id="prev_button5"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(5)" id="next_button5"></button>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="form-group" id="question6">
+                    <label id="question6_text"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="A6_Always" name="A6" value="0" required>
+                            <span id="A6_Always_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A6_Usually" name="A6" value="0" required>
+                            <span id="A6_Usually_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A6_Sometimes" name="A6" value="1" required>
+                            <span id="A6_Sometimes_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A6_Rarly" name="A6" value="1" required>
+                            <span id="A6_Rarly_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A6_Never" name="A6" value="1" required>
+                            <span id="A6_Never_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(6)" id="prev_button6"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(6)" id="next_button6"></button>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="form-group" id="question7">
+                    <label id="question7_text"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="A7_Always" name="A7" value="0" required>
+                            <span id="A7_Always_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A7_Usually" name="A7" value="0" required>
+                            <span id="A7_Usually_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A7_Sometimes" name="A7" value="1" required>
+                            <span id="A7_Sometimes_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A7_Rarly" name="A7" value="1" required>
+                            <span id="A7_Rarly_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A7_Never" name="A7" value="1" required>
+                            <span id="A7_Never_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(7)" id="prev_button7"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(7)" id="next_button7"></button>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="form-group" id="question8">
+                    <label id="question8_text"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="A8_Normal" name="A8" value="0" required>
+                            <span id="A8_Normal_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A8_Deferred" name="A8" value="1" required>
+                            <span id="A8_Deferred_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(8)" id="prev_button8"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(8)" id="next_button8"></button>
+                </div>
+
+                <!-- Question 9 -->
+                <div class="form-group" id="question9">
+                    <label id="question9_text"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="A9_Always" name="A9" value="0" required>
+                            <span id="A9_Always_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A9_Usually" name="A9" value="0" required>
+                            <span id="A9_Usually_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A9_Sometimes" name="A9" value="1" required>
+                            <span id="A9_Sometimes_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A9_Rarly" name="A9" value="1" required>
+                            <span id="A9_Rarly_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A9_Never" name="A9" value="1" required>
+                            <span id="A9_Never_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(9)" id="prev_button9"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(9)" id="next_button9"></button>
+                </div>
+
+                <!-- Question 10 -->
+                <div class="form-group" id="question10">
+                    <label id="question10_text"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="A10_Always" name="A10" value="1" required>
+                            <span id="A10_Always_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A10_Usually" name="A10" value="1" required>
+                            <span id="A10_Usually_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A10_Sometimes" name="A10" value="1" required>
+                            <span id="A10_Sometimes_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A10_Rarly" name="A10" value="0" required>
+                            <span id="A10_Rarly_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="A10_Never" name="A10" value="0" required>
+                            <span id="A10_Never_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(10)" id="prev_button10"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(10)" id="next_button10"></button>
+                </div>
+
+                <!-- Additional Fields -->
+                <div class="form-group" id="question11">
+                    <label for="Age_Mons" id="age_label"></label>
+                    <input type="text" id="Age_Mons" name="Age_Mons" required>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(11)" id="prev_button11"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(11)" id="next_button11"></button>
+                </div>
+
+                <div class="form-group" id="question12">
+                    <label for="Sex" id="sex_label"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="Sex_Female" name="Sex" value="0" required>
+                            <span id="Sex_Female_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="Sex_Male" name="Sex" value="1" required>
+                            <span id="Sex_Male_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(12)" id="prev_button12"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(12)" id="next_button12"></button>
+                </div>
+
+                <div class="form-group" id="question13">
+                    <label for="Ethnicity" id="ethnicity_label"></label>
+                    <select id="Ethnicity" name="Ethnicity" required>
+                        <option value="" disabled selected id="select_option"></option>
+                        <option value="8" id="ethnicity_option1"></option>
+                        <option value="5" id="ethnicity_option2"></option>
+                        <option value="0" id="ethnicity_option3"></option>
+                        <option value="3" id="ethnicity_option4"></option>
+                        <option value="1" id="ethnicity_option5"></option>
+                        <option value="9" id="ethnicity_option6"></option>
+                        <option value="4" id="ethnicity_option7"></option>
+                        <option value="2" id="ethnicity_option8"></option>
+                        <option value="6" id="ethnicity_option9"></option>
+                        <option value="10" id="ethnicity_option10"></option>
+                        <option value="7" id="ethnicity_option11"></option>
+                    </select>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(13)" id="prev_button13"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(13)" id="next_button13"></button>
+                </div>
+
+                <div class="form-group" id="question14">
+                    <label for="Jaundice" id="jaundice_label"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="Jaundice_Yes" name="Jaundice" value="1" required>
+                            <span id="Jaundice_Yes_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="Jaundice_No" name="Jaundice" value="0" checked required>
+                            <span id="Jaundice_No_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(14)" id="prev_button14"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(14)" id="next_button14"></button>
+                </div>
+
+                <div class="form-group" id="question15">
+                    <label for="Family_mem_with_ASD" id="asd_label"></label>
+                    <div>
+                        <label>
+                            <input type="radio" id="Family_mem_with_ASD_No" name="Family_mem_with_ASD" value="0" checked
+                                required>
+                            <span id="Family_mem_with_ASD_No_text"></span>
+                        </label>
+                        <label>
+                            <input type="radio" id="Family_mem_with_ASD_Yes" name="Family_mem_with_ASD" value="1"
+                                required>
+                            <span id="Family_mem_with_ASD_Yes_text"></span>
+                        </label>
+                    </div>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(15)" id="prev_button15"></button>
+                    <button type="button" class="next-btn" onclick="nextQuestion(15)" id="next_button15"></button>
+                </div>
+
+                <div class="form-group" id="question16">
+                    <label for="Who_completed_the_test" id="who_completed_label"></label>
+                    <select id="Who_completed_the_test" name="Who_completed_the_test" required>
+                        <option value="" disabled selected id="who_completed_option"></option>
+                        <option value="3" id="who_completed_option1"></option>
+                        <option value="0" id="who_completed_option2"></option>
+                        <option value="2" id="who_completed_option3"></option>
+                        <option value="1" id="who_completed_option4"></option>
+                    </select>
+                    <button type="button" class="prev-btn" onclick="prevQuestion(16)" id="prev_button16"></button>
+                    <button type="submit" class="submit-btn" id="submit_button"></button>
+                </div>
+            </form>
+
+            {% if prediction is not none %}
+            <div class="prediction">
+                <h2> :التشخيص </h2>
+                {% if prediction == 1 %}
+                    <h2>اضطراب طيف التوحد</h2>
+                {% else %}
+                    <h2>لايوجد اضطراب طيف التوحد</h2>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2 id="questions_call"></h2>
+
+        <div class="row">
+            <div class="col">
+                <a id="footer_faq" href="#"></a>
+                <a id="footer_support" href="#"></a>
+                <a id="footer_privacy" href="#"></a>
+                <a id="footer_terms" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_help_centre" href="#"></a>
+                <a id="footer_careers" href="#"></a>
+                <a id="footer_cookie_preferences" href="#"></a>
+                <a id="footer_legal_notices" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_account" href="#"></a>
+                <a id="footer_how_it_works" href="#"></a>
+                <a id="footer_corporate_information" href="#"></a>
+                <a id="footer_partners" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_media_centre" href="#"></a>
+                <a id="footer_about_us" href="#"></a>
+                <a id="footer_contact_us" href="#"></a>
+            </div>
+        </div>
+
+        <p class="copyright-text" id="footer_copyright"></p>
+    </div>
+
+    <script>
+        let currentQuestion = 0;
+
+        function startTest() {
+            document.querySelector('.start-btn').style.display = 'none';
+            document.querySelectorAll('.form-group')[currentQuestion].classList.add('active');
+        }
+
+        function nextQuestion(questionNumber) {
+            const currentGroup = document.querySelector(`#question${questionNumber}`);
+            if (currentGroup.querySelector('input:invalid, select:invalid')) {
+                alert('Please complete the required fields before proceeding.');
+                return;
+            }
+
+            document.querySelector(`#question${questionNumber}`).classList.remove('active');
+            currentQuestion++;
+            if (document.querySelector(`#question${currentQuestion + 1}`)) {
+                document.querySelector(`#question${currentQuestion + 1}`).classList.add('active');
+            }
+        }
+
+        function prevQuestion(questionNumber) {
+            document.querySelector(`#question${questionNumber}`).classList.remove('active');
+            currentQuestion--;
+            document.querySelector(`#question${currentQuestion + 1}`).classList.add('active');
+        }
+
+        function setLanguage(lang) {
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            let element = document.getElementById(key);
+                            if (element) {
+                                element.innerText = data[key];
+                            }
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'ar';
+            setLanguage(defaultLang);
+        });
+
+
+    </script>
+
+</body>
+
+</html>

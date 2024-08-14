@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="./Assets/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <link rel="stylesheet" href="/static/css/styleee2.css"> 
+    <title id="conditions_title">Autism Spectrum Information</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {background-color: #f5f5f5;}
+
+        .description {
+            display: none;
+            padding: 10px;
+            border-top: none;
+            background-color: #f9f9f9;
+        }
+
+        .show {
+            display: table-row;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <a href="/" class="logo">
+            <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+        </a>
+        <ul class="right">
+            <li><a style="color: rgb(0, 0, 0);" id="nav_about_homepage" href="/about"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_dashboard_homepage" href="/dashboard"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_test_homepage" href="/predict"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_conditions_homepage" href="/conditions"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_login_homepage" href="/login"></a></li>
+            <!-- Language Switcher Dropdown -->
+            <div class="language-switcher icon-container">
+                <button><i class="fas fa-globe"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setLanguage('en')">English</a>
+                    <a href="#" onclick="setLanguage('ar')">العربية</a>
+                </div>
+            </div>
+        </ul>
+    </nav>
+
+    <div class="header"><br><br><br><br><br><br>
+        <section class="container">
+            <h1 id="conditions_title1">Autism Spectrum Information</h1>
+            <table>
+                <tr onclick="toggleDescription('desc1')">
+                    <td id="classic_autism">Classic Autism (Kanner's Syndrome)</td>
+                </tr>
+                <tr id="desc1" class="description">
+                    <td id="classic_autism_desc">Classic Autism, also known as Kanner's syndrome, is characterized by significant language delays, social and communication challenges, and unusual behaviors and interests.</td>
+                </tr>
+
+                <tr onclick="toggleDescription('desc2')">
+                    <td id="aspergers_syndrome">Asperger's Syndrome</td>
+                </tr>
+                <tr id="desc2" class="description">
+                    <td id="aspergers_desc">Asperger's Syndrome is a form of autism characterized by difficulties in social interaction and nonverbal communication, alongside restricted and repetitive patterns of behavior and interests.</td>
+                </tr>
+
+                <tr onclick="toggleDescription('desc3')">
+                    <td id="pdd_nos">Pervasive Developmental Disorder - Not Otherwise Specified (PDD-NOS)</td>
+                </tr>
+                <tr id="desc3" class="description">
+                    <td id="pdd_nos_desc">PDD-NOS is a diagnosis given to individuals who are on the autism spectrum but do not fully meet the criteria for another specific ASD.</td>
+                </tr>
+
+                <tr onclick="toggleDescription('desc4')">
+                    <td id="rett_syndrome">Rett Syndrome</td>
+                </tr>
+                <tr id="desc4" class="description">
+                    <td id="rett_syndrome_desc">Rett Syndrome is a rare genetic disorder that affects brain development, resulting in severe cognitive and physical impairments. It primarily affects girls.</td>
+                </tr>
+
+                <tr onclick="toggleDescription('desc5')">
+                    <td id="cdd">Childhood Disintegrative Disorder (CDD)</td>
+                </tr>
+                <tr id="desc5" class="description">
+                    <td id="cdd_desc">Childhood Disintegrative Disorder is characterized by late-onset developmental delays or significant reversals in language, social function, and motor skills.</td>
+                </tr>
+
+                <tr onclick="toggleDescription('desc6')">
+                    <td id="hfa">High-Functioning Autism (HFA)</td>
+                </tr>
+                <tr id="desc6" class="description">
+                    <td id="hfa_desc">High-Functioning Autism refers to individuals with autism who have higher intellectual abilities but still struggle with social interactions and communication.</td>
+                </tr>
+
+                <tr onclick="toggleDescription('desc7')">
+                    <td id="spd">Sensory Processing Disorder (SPD)</td>
+                </tr>
+                <tr id="desc7" class="description">
+                    <td id="spd_desc">Sensory Processing Disorder is a condition where the brain has trouble receiving and responding to information that comes in through the senses.</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+
+    <div class="footer">
+        <h2 id="questions_call">Questions? Call +966 55 242 8075</h2>
+
+        <div class="row">
+            <div class="col">
+                <a id="footer_faq" href="#">FAQ</a>
+                <a id="footer_support" href="#">Support</a>
+                <a id="footer_privacy" href="#">Privacy</a>
+                <a id="footer_terms" href="#">Terms of Service</a>
+            </div>
+            <div class="col">
+                <a id="footer_help_centre" href="#">Help Centre</a>
+                <a id="footer_careers" href="#">Careers</a>
+                <a id="footer_cookie_preferences" href="#">Cookie Preferences</a>
+                <a id="footer_legal_notices" href="#">Legal Notices</a>
+            </div>
+            <div class="col">
+                <a id="footer_account" href="#">Account</a>
+                <a id="footer_how_it_works" href="#">How It Works</a>
+                <a id="footer_corporate_information" href="#">Corporate Information</a>
+                <a id="footer_partners" href="#">Partners</a>
+            </div>
+            <div class="col">
+                <a id="footer_media_centre" href="#">Media Centre</a>
+                <a id="footer_about_us" href="#">About Us</a>
+                <a id="footer_contact_us" href="#">Contact Us</a>
+            </div>
+        </div>
+
+        <p class="copyright-text" id="footer_copyright">&copy; 2024 تَآزُر</p>
+    </div>
+
+    <script>
+        function toggleDescription(id) {
+            var desc = document.getElementById(id);
+            desc.classList.toggle('show');
+        }
+
+        window.addEventListener('scroll', function () {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function setLanguage(lang) {
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            let element = document.getElementById(key);
+                            if (element) {
+                                element.innerText = data[key];
+                            }
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'ar';
+            setLanguage(defaultLang);
+        });
+    </script>
+</body>
+
+</html>

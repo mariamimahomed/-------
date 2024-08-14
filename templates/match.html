@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Match - Parentpals</title>
+    <link rel="stylesheet" href="/static/css/styleee2.css">
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <style>
+        label::after {
+            content: '';
+            font-size: 34px;
+            position: absolute;
+            right: 20px;
+            transition: transform 0.5s;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"],
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .input-row div {
+            flex: 1;
+        }
+
+        .matches-container {
+            margin-top: 20px;
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-height: 200px; /* Set height to show only two matches */
+            overflow-y: scroll;
+        }
+
+        .match-item {
+            margin-bottom: 10px;
+        }
+
+        .match-link {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .match-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <a href="/index" class="logo">
+                <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+            </a>
+            <ul>
+                {% if current_user.is_authenticated %}
+                <li><a id="nav_match" href="/match"></a></li>
+                <li><a id="nav_mentors" href="/mentor"></a></li>
+                <li><a id="nav_community" href="/community"></a></li>
+
+                <!-- Profile Icon Dropdown -->
+                <div class="profile-switcher icon-container">
+                    <button><i class="fas fa-user"></i></button>
+                    <div class="dropdown-content">
+                        <a id="nav_update_profile" href="/profile"></a>
+                        <a id="nav_logout" href="/logout"></a>
+                    </div>
+                </div>
+
+                <!-- Chat Icon -->
+                <li class="icon-container chat-icon">
+                    <a href="/mychats">
+                        <i class="fas fa-comment"></i> <!-- Font Awesome Chat Icon -->
+                    </a>
+                </li>
+                {% else %}
+                <li><a id="nav_login" href="/login"></a></li>
+                {% endif %}
+
+                <!-- Language Switcher Dropdown -->
+                <div class="language-switcher icon-container">
+                    <button><i class="fas fa-globe"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="setLanguage('en')">English</a>
+                        <a href="#" onclick="setLanguage('ar')">العربية</a>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="header"><br><br><br><br>
+        <main>
+            <h2 id="find_a_match_title"></h2>
+            <form method="POST" action="/match">
+                <div class="input-row">
+                    <div>
+                        <label for="child_age" id="child_age_label"></label>
+                        <input type="number" id="child_age" name="child_age" required>
+                    </div>
+                    <div>
+                        <label for="region" id="region_label"></label>
+                        <select id="region" name="region" required>
+                            <option value="north" id="north_option"></option>
+                            <option value="south" id="south_option"></option>
+                            <option value="east" id="east_option"></option>
+                            <option value="west" id="west_option"></option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <label for="diagnosis" id="diagnosis_label"></label>
+                <select id="diagnosis" name="diagnosis" required>
+                    <option value="autism" id="autism_option"></option>
+                    <option value="aspergers" id="aspergers_option"></option>
+                    <option value="pdd-nos" id="pdd_nos_option"></option>
+                    <option value="rett" id="rett_option"></option>
+                    <option value="cdd" id="cdd_option"></option>
+                </select>
+
+
+                <button type="submit" class="match-submit-btn" id="find_matches_button">Find Matches</button>
+            </form>
+
+            <!-- Matches Container -->
+            {% if matches is not none %}
+            {% if matches %}
+            <div class="matches-container">
+                <h3 id="potential_matches_title">Potential Matches</h3>
+                <ul class="match-list">
+                    {% for match in matches %}
+                    <li class="match-item">{{ match.username }} - <span id="child_age_text">Child Age:</span> {{
+                        match.child_age }} - <span id="diagnosis_text">Diagnosis:</span> {{
+                        match.diagnosis }}
+                        <a href="/chat/{{ match.id }}" class="match-link" id="match_link_text">Match with {{
+                            match.username }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% elif matches == [] %}
+            <div class="no-matches" id="no_matches_text"></div>
+            {% endif %}
+            {% endif %}
+        </main>
+    </div>
+
+    <div class="footer">
+        <h2 id="questions_call"></h2>
+
+        <div class="row">
+            <div class="col">
+                <a id="footer_faq" href="#"></a>
+                <a id="footer_support" href="#"></a>
+                <a id="footer_privacy" href="#"></a>
+                <a id="footer_terms" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_account" href="#"></a>
+                <a id="footer_how_it_works" href="#"></a>
+                <a id="footer_corporate_information" href="#"></a>
+                <a id="footer_partners" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_media_centre" href="#"></a>
+                <a id="footer_about_us" href="#"></a>
+                <a id="footer_contact_us" href="#"></a>
+            </div>
+        </div>
+
+        <p class="copyright-text" id="footer_copyright"></p>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function setLanguage(lang) {
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            const element = document.getElementById(key);
+                            if (element) {
+                                element.innerText = data[key];
+                            }
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'ar';
+            setLanguage(defaultLang);
+        });
+    </script>
+</body>
+
+</html>

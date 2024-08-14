@@ -1,0 +1,43 @@
+[
+    {
+        "name": "Layla Al-Farsi",
+        "diagnose_of_autism": "Asperger's Syndrome",
+        "problem": "Difficulty in social interactions",
+        "solution_for_success": "Participated in social skills training and joined a support group",
+        "contact_details": {
+            "email": "layla.alfarsi@gmail.com",
+            "phone": "+966-500-123-456"
+        }
+    },
+    {
+        "name": "Omar Al-Mansour",
+        "diagnose_of_autism": "Autistic Disorder",
+        "problem": "Communication and sensory overload",
+        "solution_for_success": "Underwent speech therapy and used sensory-friendly tools",
+        "contact_details": {
+            "email": "omar.almansour@gmail.com",
+            "phone": "+966-500-234-567"
+        }
+    },
+    {
+        "name": "Fatimah Al-Rashed",
+        "diagnose_of_autism": "Pervasive Developmental Disorder",
+        "problem": "Struggled with employment and job stability",
+        "solution_for_success": "Received job coaching and found a supportive work environment",
+        "contact_details": {
+            "email": "fatimah.alrashed@gmail.com",
+            "phone": "+966-500-345-678"
+        }
+    },
+    {
+        "name": "Ahmed Al-Saleh",
+        "diagnose_of_autism": "High-Functioning Autism",
+        "problem": "Difficulty with focus and organization",
+        "solution_for_success": "Used organizational aids and had regular counseling sessions",
+        "contact_details": {
+            "email": "ahmed.alsaleh@gmail.com",
+            "phone": "+966-500-456-789"
+        }
+    }
+]
+

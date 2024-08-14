@@ -1,0 +1,16 @@
+[
+    {
+        "sender_id": 4,
+        "receiver_id": "2",
+        "username": "Sarah",
+        "message": "test",
+        "room": "2_4"
+    },
+    {
+        "sender_id": 4,
+        "receiver_id": "2",
+        "username": "Sarah",
+        "message": "test",
+        "room": "2_4"
+    }
+]

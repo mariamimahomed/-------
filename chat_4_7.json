@@ -1,0 +1,23 @@
+[
+    {
+        "sender_id": 4,
+        "receiver_id": "7",
+        "username": "Sarah",
+        "message": "\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064a\u0643\u0645",
+        "room": "4_7"
+    },
+    {
+        "sender_id": 7,
+        "receiver_id": "4",
+        "username": "Ahmed",
+        "message": "\u0648\u0639\u0644\u064a\u0643\u0645 \u0627\u0644\u0633\u0644\u0627\u0645",
+        "room": "4_7"
+    },
+    {
+        "sender_id": 4,
+        "receiver_id": "7",
+        "username": "Sarah",
+        "message": "\u0627\u0646\u0627 \u0637\u0641\u0644\u064a \u0627\u0633\u0645\u0647 \u0646\u0636\u0627\u0644",
+        "room": "4_7"
+    }
+]

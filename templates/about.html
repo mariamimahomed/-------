@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <link rel="shortcut icon" href="./Assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/styleee2.css"> <!-- Updated CSS file -->
+    <title>من نحن</title>
+    <style>
+        .header {
+            text-align: center;
+            height: 100vh;
+            background-image: url('/static/images/new_final.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top;
+            position: relative;
+            z-index: 1;
+            margin-top: -5rem;
+            /* Adjust to pull the nav into the header */
+        }
+
+        .header-content {
+            position: absolute;
+            top: 60%;
+            margin-top: -5rem;
+            /* Adjust to pull the nav into the header */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #060505;
+        }
+
+
+        nav {
+            background-color: transparent;
+            display: flex;
+            padding: 1rem 2rem;
+            color: #060505;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: #bdd1d038;
+        }
+
+        .header-content {
+            background-image: url('/static/images/new_final.png');
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .team-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 50px 12%;
+            background-color: #f5f0f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .team-member {
+            flex-basis: 23%;
+            /* width of each team member block */
+            margin-bottom: 20px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            display: block;
+            margin: auto;
+            background: none;
+            /* تأكد من أن الخلفية لا تحتوي على لون */
+            padding: 0;
+            /* إزالة أي مسافات padding قد تسبب في ظهور الحدود */
+            border: none;
+            /* إزالة أي حدود قد تسبب في ظهور الدائرة */
+        }
+
+
+        .team-member h3 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .team-member a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .team-member a:hover {
+            color: #004999;
+        }
+
+
+        .footer {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .footer .row {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer .col {
+            flex-basis: 22%;
+            margin-bottom: 1rem;
+        }
+
+        .footer .col a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer .col a:hover {
+            color: #0066cc;
+        }
+
+        .copyright-text {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .slide-content h1,
+        .slide-content h2 {
+            margin-top: 7rem;
+        }
+
+        .slide-content p {
+            font-size: 20px;
+            margin-top: 4rem;
+        }
+
+        .slide-content img {
+            max-width: 700px;
+            /* Make images smaller */
+            height: auto;
+            margin-top: 6rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <body>
+        <nav id="navbar">
+            <a href="/" class="logo">
+                <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+            </a>
+            <ul class="right">
+                <li><a style="color: rgb(0, 0, 0);" id="nav_about_homepage" href="/about"></a></li>
+                <li><a style="color: rgb(0, 0, 0);" id="nav_dashboard_homepage" href="/dashboard"></a></li>
+                <li><a style="color: rgb(0, 0, 0);" id="nav_test_homepage" href="/predict"></a></li>
+                <li><a style="color: rgb(0, 0, 0);" id="nav_conditions_homepage" href="/conditions"></a></li>
+                <li><a style="color: rgb(0, 0, 0);" id="nav_login_homepage" href="/login"></a></li>
+                <!-- Language Switcher Dropdown -->
+                <div class="language-switcher icon-container">
+                    <button><i class="fas fa-globe"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="setLanguage('en')">English</a>
+                        <a href="#" onclick="setLanguage('ar')">العربية</a>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+
+        <div id="about us_welcom" class="header">
+            <div class="slide-content" style="color: #060505;">
+                <h1>من نحن</h1>
+                <p>نحن فريق مكرس لدعم الأسر التي لديها أطفال مصابون بالتوحد، ونسعى لبناء مجتمع يتيح للأهالي التواصل
+                    وتبادل الخبرات والمعلومات </p>
+                    <p>نوفر بيئة آمنة لمشاركة التجارب ونشر محتوى هادف يساهم في تحسين حياة
+                    الأطفال المصابين بالتوحد واسرهم</p>
+                <img src="/static/images/image.png" alt="image">
+            </div>
+
+        </div>
+        <div class="team-container">
+            <div class="team-member">
+                <img src="/static/images/rafa.png" style="max-width: 100%; height: auto; border-radius: 50%;">
+                <h3>رفاء العويبدي</h3>
+                <p>خريجة علوم حاسب وذكاء اصطناعي من جامعة ام القرى ، مهتمة بمجال الذكاء الاصطناعي وتحليل البيانات</p>
+                <a href="https://www.linkedin.com/in/rafaa-alowaybidi-136353286/" target="_blank">LinkedIn</a>
+            </div>
+            <div class="team-member">
+                <img src="/static/images/mariam.png" style="max-width: 100%; height: auto; border-radius: 50%;">
+                <h3>مريم محمد</h3>
+                <p>طالبة هندسة برمجيات من جامعة الأعمال والتكنولوجيا، مهتمة بالأمن السيبراني وتحليل البيانات</p>
+                <a href="https://www.linkedin.com/in/mariam-i-mahomed-9611b2299?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                    target="_blank">LinkedIn</a>
+            </div>
+            <div class="team-member">
+                <img src="/static/images/busshra.png" style="max-width: 100%; height: auto; border-radius: 50%;">
+                <h3>بشرى دعجم</h3>
+                <p>نبذه</p>
+                <a href="https://www.linkedin.com/in/bushra-dajam?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                    target="_blank">LinkedIn</a>
+            </div>
+            <div class="team-member">
+                <img src="/static/images/hasan.png" style="max-width: 100%; height: auto; border-radius: 50%;">
+                <h3>حسان كلنتن</h3>
+                <p>نبذه</p>
+                <a href="https://www.linkedin.com/in/%D8%AD%D8%B3%D8%A7%D9%86-%D9%83%D9%84%D9%86%D8%AA%D9%86-036680234?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                    target="_blank">LinkedIn</a>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="footer">
+            <h2 id="questions_call">Have Questions? Call us!</h2>
+
+            <div class="row">
+                <div class="col">
+                    <a id="footer_faq" href="#">FAQ</a>
+                    <a id="footer_support" href="#">Support</a>
+                    <a id="footer_privacy" href="#">Privacy</a>
+                    <a id="footer_terms" href="#">Terms</a>
+                </div>
+                <div class="col">
+                    <a id="footer_account" href="#">My Account</a>
+                    <a id="footer_how_it_works" href="#">How It Works</a>
+                    <a id="footer_corporate_information" href="#">Corporate Information</a>
+                    <a id="footer_partners" href="#">Partners</a>
+                </div>
+                <div class="col">
+                    <a id="footer_media_centre" href="#">Media Centre</a>
+                    <a id="footer_about_us" href="/about">About Us</a>
+                    <a id="footer_contact_us" href="#">Contact Us</a>
+                </div>
+            </div>
+
+            <p class="copyright-text" id="footer_copyright_homepage">© 2024 ParentPals. All rights reserved.</p>
+        </div>
+
+
+        <script>
+            window.addEventListener('scroll', function () {
+                var navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            function setLanguage(lang) {
+                fetch(`/static/lang/${lang}.json`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.documentElement.lang = lang;
+                        localStorage.setItem('lang', lang);
+                        for (let key in data) {
+                            if (data.hasOwnProperty(key)) {
+                                let element = document.getElementById(key);
+                                if (element) {
+                                    element.innerText = data[key];
+                                }
+                            }
+                        }
+                    })
+                    .catch(error => console.error('Error loading language file:', error));
+            }
+
+            // Load default language on page load
+            document.addEventListener('DOMContentLoaded', function () {
+                const defaultLang = localStorage.getItem('lang') || 'ar';
+                setLanguage(defaultLang);
+
+                // Initialize Swiper
+                var swiper = new Swiper('.swiper-container', {
+                    loop: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+            });
+        </script>
+    </body>
+
+</html>

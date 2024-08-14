@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <title>Chatbot</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <link rel="stylesheet" href="/static/css/styleee2.css"> <!-- Updated CSS file -->
+    <style>
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 77vh;
+            margin: auto;
+        }
+
+        #chatbot-log {
+            flex: 1;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            overflow-y: auto;
+            background-color: #fafafa;
+        }
+
+        #chatbot-log div {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        #chatbot-log .user {
+            background-color: #e1f5fe;
+            color: #0277bd;
+            align-self: flex-start;
+            border: 1px solid #b3e5fc;
+        }
+
+        #chatbot-log .bot {
+            background-color: #c8e6c9;
+            color: #1b5e20;
+            align-self: flex-end;
+            border: 1px solid #a5d6a7;
+        }
+
+        #chatbot-message-container {
+            display: flex;
+            border-top: 1px solid #e0e0e0;
+            padding: 10px;
+            background-color: #ffffff;
+        }
+
+        #chatbot-message {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .chatbot-button {
+            padding: 10px 10px 10px 10px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #chatbot-welcome {
+            padding: 20px;
+            background-color: #e1f5fe;
+            border-bottom: 1px solid #b3e5fc;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+            color: #0277bd;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <a href="/index" class="logo">
+            <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+        </a>
+        <ul>
+            {% if current_user.is_authenticated %}
+            <li><a id="nav_match" href="/match"></a></li>
+            <li><a id="nav_mentors" href="/mentor"></a></li>
+            <li><a id="nav_community" href="/community"></a></li>
+    
+            <!-- Profile Icon Dropdown -->
+            <div class="profile-switcher icon-container">
+                <button><i class="fas fa-user"></i></button>
+                <div class="dropdown-content">
+                    <a id="nav_update_profile" href="/profile"></a>
+                    <a id="nav_logout" href="/logout"></a>
+                </div>
+            </div>
+    
+            <!-- Chat Icon -->
+            <li class="icon-container chat-icon">
+                <a href="/mychats">
+                    <i class="fas fa-comment"></i> <!-- Font Awesome Chat Icon -->
+                </a>
+            </li>
+            {% else %}
+            <li><a id="nav_login" href="/login"></a></li>
+            {% endif %}
+    
+            <!-- Language Switcher Dropdown -->
+            <div class="language-switcher icon-container">
+                <button><i class="fas fa-globe"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setLanguage('en')">English</a>
+                    <a href="#" onclick="setLanguage('ar')">العربية</a>
+                </div>
+            </div>
+        </ul>
+    </nav>
+
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        function sendMessage() {
+            var message = document.getElementById('chatbot-message').value;
+            if (message) {
+                addMessageToChatLog('You', message, 'user');
+                socket.emit('message', { question: message });
+                document.getElementById('chatbot-message').value = '';
+            }
+        }
+
+        socket.on('response', function (data) {
+            addMessageToChatLog('Bot', data.answer, 'bot');
+        });
+
+        function addMessageToChatLog(sender, message, cssClass) {
+            var chatLog = document.getElementById('chatbot-log');
+            chatLog.innerHTML += '<div class="' + cssClass + '">' + sender + ': ' + message + '</div>';
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        function displayWelcomeMessage() {
+            fetch('/welcome_message')
+                .then(response => response.json())
+                .then(data => {
+                    var welcomeMessages = data.messages;
+                    var welcomeHtml = '<div id="chatbot-welcome">';
+                    welcomeMessages.forEach(msg => {
+                        welcomeHtml += '<p>' + msg.english + '</p><p>' + msg.arabic + '</p><hr>';
+                    });
+                    welcomeHtml += '</div>';
+                    document.getElementById('chatbot-log').innerHTML = welcomeHtml + document.getElementById('chatbot-log').innerHTML;
+                });
+        }
+
+        function setLanguage(lang) {
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            const element = document.getElementById(key);
+                            if (element) {
+                                element.innerText = data[key];
+                            }
+                        }
+                    }
+                    document.getElementById('chatbot-message').placeholder = data['chatbot_message_placeholder'];
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'ar';
+            setLanguage(defaultLang);
+            displayWelcomeMessage();
+        });
+    </script>
+
+    <div class="header"><br><br><br><br><br>
+        <div class="container">
+            <div id="chatbot-log"></div>
+            <div id="chatbot-message-container">
+                <input type="text" id="chatbot-message" placeholder="">
+                <button onclick="sendMessage()" class="chatbot-button" id="chatbot_send_button"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2 id="questions_call"></h2>
+
+        <div class="row">
+            <div class="col">
+                <a id="footer_faq" href="#"></a>
+                <a id="footer_support" href="#"></a>
+                <a id="footer_privacy" href="#"></a>
+                <a id="footer_terms" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_account" href="#"></a>
+                <a id="footer_how_it_works" href="#"></a>
+                <a id="footer_corporate_information" href="#"></a>
+                <a id="footer_partners" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_media_centre" href="#"></a>
+                <a id="footer_about_us" href="#"></a>
+                <a id="footer_contact_us" href="#"></a>
+            </div>
+        </div>
+
+        <p class="copyright-text" id="footer_copyright"></p>
+    </div>
+
+</body>
+
+</html>

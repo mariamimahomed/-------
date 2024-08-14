@@ -1,0 +1,30 @@
+[
+    {
+        "sender_id": 2,
+        "receiver_id": "2",
+        "username": "hi",
+        "message": "hi",
+        "room": "2_2"
+    },
+    {
+        "sender_id": 2,
+        "receiver_id": "2",
+        "username": "hi",
+        "message": "hiii",
+        "room": "2_2"
+    },
+    {
+        "sender_id": 2,
+        "receiver_id": "2",
+        "username": "hi",
+        "message": "how are u",
+        "room": "2_2"
+    },
+    {
+        "sender_id": 2,
+        "receiver_id": "2",
+        "username": "hi",
+        "message": "hjkl;'",
+        "room": "2_2"
+    }
+]

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <link rel="shortcut icon" href="./Assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/communityStyle.css">
+
+    <title>Parentpals - Community</title>
+
+</head>
+
+<style>
+    .feed-container {
+    max-height: 500px; /* Set the maximum height for the feed container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px; /* Optional padding */
+    border: 1px solid #ccc; /* Optional border for better visibility */
+    margin-top: 20px; /* Add some margin at the top */
+    background-color: #f9f9f9; /* Optional background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+.feed-container::-webkit-scrollbar {
+    width: 8px; /* Customize scrollbar width */
+}
+
+.feed-container::-webkit-scrollbar-thumb {
+    background-color: #888; /* Customize scrollbar color */
+    border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+}
+
+.feed-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Change color on hover */
+}
+
+</style>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <a href="/index" class="logo">
+                <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+            </a>
+            <ul>
+                {% if current_user.is_authenticated %}
+                <li><a id="nav_match" href="/match"></a></li>
+                <li><a id="nav_mentors" href="/mentor"></a></li>
+                <li><a id="nav_community" href="/community"></a></li>
+        
+                <!-- Profile Icon Dropdown -->
+                <div class="profile-switcher icon-container">
+                    <button><i class="fas fa-user"></i></button>
+                    <div class="dropdown-content">
+                        <a id="nav_update_profile" href="/profile"></a>
+                        <a id="nav_logout" href="/logout"></a>
+                    </div>
+                </div>
+        
+                <!-- Chat Icon -->
+                <li class="icon-container chat-icon">
+                    <a href="/mychats">
+                        <i class="fas fa-comment"></i> <!-- Font Awesome Chat Icon -->
+                    </a>
+                </li>
+                {% else %}
+                <li><a id="nav_login" href="/login"></a></li>
+                {% endif %}
+        
+                <!-- Language Switcher Dropdown -->
+                <div class="language-switcher icon-container">
+                    <button><i class="fas fa-globe"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="setLanguage('en')">English</a>
+                        <a href="#" onclick="setLanguage('ar')">العربية</a>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+        <div class="header">
+            <br><br><br><br><br><br>
+            <section id="community">
+                <h1 id="community_forum_title">My Feed</h1>
+
+                <!-- Tab Container -->
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" id="tab-accomplishments"
+                            onclick="showFeed('accomplishments')"></button>
+                        <button class="tab-button" id="tab-blog" onclick="showFeed('blog')"></button>
+                    </div>
+                    <button class="new-post-button" id="new-post-button" onclick="openNewPostForm()"></button>
+                </div>
+
+                <!-- Feed Container -->
+                <div id="feed-container" class="feed-container">
+                    <!-- Posts will be dynamically loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- New Post Modal -->
+    <div id="newPostModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeNewPostForm()">&times;</span>
+            <h2 id="modal-post-title-heading">Write to help others</h2>
+            <form id="modal-post-form">
+                <label for="modal-post-title" id="modal-post-title-label">Title:</label>
+                <input type="text" id="modal-post-title" required>
+
+                <label for="modal-post-content" id="modal-post-content-label">Description:</label>
+                <textarea id="modal-post-content" rows="5" required></textarea>
+
+                <center>
+                    <div class="post-buttons">
+                        <button type="button" id="post-accomplishments-button" onclick="submitModalPost('accomplishments')">Post to Accomplishments</button>
+                        <button type="button" id="post-blog-button" onclick="submitModalPost('blog')">Post to Blog</button>
+                    </div>
+                </center>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <h2 id="questions_call"></h2>
+
+        <div class="row">
+            <div class="col">
+                <a id="footer_faq" href="#"></a>
+                <a id="footer_support" href="#"></a>
+                <a id="footer_privacy" href="#"></a>
+                <a id="footer_terms" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_account" href="#"></a>
+                <a id="footer_how_it_works" href="#"></a>
+                <a id="footer_corporate_information" href="#"></a>
+                <a id="footer_partners" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_media_centre" href="#"></a>
+                <a id="footer_about_us" href="#"></a>
+                <a id="footer_contact_us" href="#"></a>
+            </div>
+        </div>
+
+        <p class="copyright-text" id="footer_copyright"></p>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function setLanguage(lang) {
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            const element = document.getElementById(key);
+                            if (element) {
+                                element.innerText = data[key];
+                            }
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'ar';
+            setLanguage(defaultLang);
+            showFeed('accomplishments'); // Show accomplishments feed by default
+        });
+
+        function showFeed(feedType) {
+            const accomplishmentsTab = document.getElementById('tab-accomplishments');
+            const blogTab = document.getElementById('tab-blog');
+
+            // Update active tab
+            if (feedType === 'accomplishments') {
+                accomplishmentsTab.classList.add('active');
+                blogTab.classList.remove('active');
+            } else {
+                blogTab.classList.add('active');
+                accomplishmentsTab.classList.remove('active');
+            }
+
+            // Load posts based on the selected feed type
+            loadPosts(feedType);
+        }
+
+        function loadPosts(feedType) {
+            fetch('/load_posts')
+                .then(response => response.json())
+                .then(data => {
+                    const feedContainer = document.getElementById('feed-container');
+                    feedContainer.innerHTML = '';
+
+                    const posts = data[feedType];
+
+                    // Display posts in the feed container
+                    posts.forEach(post => {
+                        feedContainer.innerHTML += `<div class="post"><h3 class="post-title">${post.title}</h3><p class="post-description">${post.content}</p></div>`;
+                    });
+                });
+        }
+
+        function openNewPostForm() {
+            document.getElementById('newPostModal').style.display = 'block';
+        }
+
+        function closeNewPostForm() {
+            document.getElementById('newPostModal').style.display = 'none';
+        }
+
+        function submitModalPost(section) {
+            const title = document.getElementById('modal-post-title').value;
+            const content = document.getElementById('modal-post-content').value;
+
+            if (title && content) {
+                fetch('/submit_post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        content: content,
+                        section: section
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            closeNewPostForm(); // Close the modal after successful submission
+                            loadPosts(section); // Reload posts after submission
+                            document.getElementById('modal-post-title').value = '';
+                            document.getElementById('modal-post-content').value = '';
+                        } else {
+                            alert('Error posting content');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+    </script>
+</body>
+
+</html>

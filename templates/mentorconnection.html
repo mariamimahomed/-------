@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="./Assets/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <title>Mentor Connection</title>
+    <link rel="stylesheet" href="/static/css/styleee2.css"> <!-- Updated CSS file -->
+    <style>
+        /* Add styling for the mentor options */
+        .mentor-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mentor-option {
+            flex: 0 1 45%;
+            max-width: 500px;
+            padding: 1.5rem;
+            border: 2px solid #000000;
+            border-radius: 8px;
+            background-color: #ffffff;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+
+        .mentor-option:hover {
+            background-color: #e3f2fd;
+            transform: translateY(-5px);
+        }
+
+        .mentor-option h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .mentor-option p {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .mentor-option button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3a6e7c;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .mentor-option button:hover {
+            background-color: lightblue;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <a href="/index" class="logo">
+            <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+        </a>
+        <ul>
+            {% if current_user.is_authenticated %}
+            <li><a id="nav_match" href="/match"></a></li>
+            <li><a id="nav_mentors" href="/mentor"></a></li>
+            <li><a id="nav_community" href="/community"></a></li>
+
+            <!-- Profile Icon Dropdown -->
+            <div class="profile-switcher icon-container">
+                <button><i class="fas fa-user"></i></button>
+                <div class="dropdown-content">
+                    <a id="nav_update_profile" href="/profile"></a>
+                    <a id="nav_logout" href="/logout"></a>
+                </div>
+            </div>
+
+            <!-- Chat Icon -->
+            <li class="icon-container chat-icon">
+                <a href="/mychats">
+                    <i class="fas fa-comment"></i> <!-- Font Awesome Chat Icon -->
+                </a>
+            </li>
+            {% else %}
+            <li><a id="nav_login" href="/login"></a></li>
+            {% endif %}
+
+            <!-- Language Switcher Dropdown -->
+            <div class="language-switcher icon-container">
+                <button><i class="fas fa-globe"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setLanguage('en')">English</a>
+                    <a href="#" onclick="setLanguage('ar')">العربية</a>
+                </div>
+            </div>
+        </ul>
+    </nav>
+
+    <div class="header"><br><br><br><br><br>
+        <h1 data-key="choose_mentor">Choose Your Mentor</h1>
+
+        <div id="mentor-options" class="mentor-options"></div> <!-- Container for mentor options -->
+
+    </div>
+
+    <div class="footer">
+        <h2 data-key="footer_question">Questions? Call +966 55 242 8075</h2>
+
+        <div class="row">
+            <div class="col">
+                <a data-key="faq" href="#">FAQ</a>
+                <a data-key="support" href="#">Support</a>
+                <a data-key="privacy" href="#">Privacy</a>
+                <a data-key="terms" href="#">Terms of Service</a>
+            </div>
+            <div class="col">
+                <a data-key="account" href="#">Account</a>
+                <a data-key="how_it_works" href="#">How It Works</a>
+                <a data-key="corporate_info" href="#">Corporate Information</a>
+                <a data-key="partners" href="#">Partners</a>
+            </div>
+            <div class="col">
+                <a data-key="media_centre" href="#">Media Centre</a>
+                <a data-key="about_us" href="#">About Us</a>
+                <a data-key="contact_us" href="#">Contact Us</a>
+            </div>
+        </div>
+
+        <p class="copyright-text" data-key="copyright">&copy; 2024 تَآزُر</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/api/mentors')
+                .then(response => response.json())
+                .then(data => {
+                    const mentorContainer = document.getElementById('mentor-options');
+                    data.forEach(mentor => {
+                        const mentorDiv = document.createElement('div');
+                        mentorDiv.className = 'mentor-option';
+                        mentorDiv.innerHTML = `
+                            <h3>${mentor.name}</h3>
+                            <p><strong>Diagnosis:</strong> ${mentor.diagnose_of_autism}</p>
+                            <p><strong>Problem:</strong> ${mentor.problem}</p>
+                            <p><strong>Solution:</strong> ${mentor.solution_for_success}</p>
+                            <p><strong>Contact Email:</strong> <a href="mailto:${mentor.contact_details.email}">${mentor.contact_details.email}</a></p>
+                            <p><strong>Contact Phone:</strong> ${mentor.contact_details.phone}</p>
+                            <button onclick="scheduleAppointment('${mentor.name}')">Contact</button>
+                        `;
+                        mentorContainer.appendChild(mentorDiv);
+                    });
+                })
+                .catch(error => console.error('Error fetching mentors:', error));
+        });
+
+        function scheduleAppointment(mentorName) {
+            // Simulate scheduling an appointment
+            alert(`Your appointment with ${mentorName} has been scheduled. We will contact you shortly.`);
+        }
+
+
+        function setLanguage(lang) {
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            const element = document.getElementById(key);
+                            if (element) {
+                                element.innerText = data[key];
+                            }
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'ar';
+            setLanguage(defaultLang);
+        });
+
+        window.addEventListener('scroll', function () {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Parentpals</title>
+    <link rel="stylesheet" href="/static/css/styleee2.css">
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    label::after {
+        content: '';
+        font-size: 34px;
+        position: absolute;
+        right: 20px;
+        transition: transform 0.5s;
+    }
+    .input-row {
+    display: flex;
+    gap: 20px; /* Adjust the gap between the input boxes as needed */
+}
+
+.input-group {
+    flex: 1;
+}
+
+.input-group label,
+.input-group input,
+.input-group select {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.input-group input,
+.input-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+    form {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    label,
+    input,
+    select,
+    button {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    input,
+    select,
+    button {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    button {
+        background-color: #3a6e7c;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: lightblue;
+        color: black;
+    }
+</style>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <a href="/index" class="logo">
+                <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+            </a>
+            <ul>
+                {% if current_user.is_authenticated %}
+                <li><a id="nav_match" href="/match"></a></li>
+                <li><a id="nav_mentors" href="/mentor"></a></li>
+                <li><a id="nav_community" href="/community"></a></li>
+        
+                <!-- Profile Icon Dropdown -->
+                <div class="profile-switcher icon-container">
+                    <button><i class="fas fa-user"></i></button>
+                    <div class="dropdown-content">
+                        <a id="nav_update_profile" href="/profile"></a>
+                        <a id="nav_logout" href="/logout"></a>
+                    </div>
+                </div>
+        
+                <!-- Chat Icon -->
+                <li class="icon-container chat-icon">
+                    <a href="/mychats">
+                        <i class="fas fa-comment"></i> <!-- Font Awesome Chat Icon -->
+                    </a>
+                </li>
+                {% else %}
+                <li><a id="nav_login" href="/login"></a></li>
+                {% endif %}
+        
+                <!-- Language Switcher Dropdown -->
+                <div class="language-switcher icon-container">
+                    <button><i class="fas fa-globe"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="setLanguage('en')">English</a>
+                        <a href="#" onclick="setLanguage('ar')">العربية</a>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="header"><br><br><br><br><br>
+            <h2 id="profile_title"></h2>
+            <form method="POST">
+                <label for="username" id="username_label"></label>
+                <input type="text" id="username" name="username" value="{{ user.username }}" disabled><br>
+
+                <label for="email" id="email_label"></label>
+                <input type="text" id="email" name="email" value="{{ user.email }}" disabled><br>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="parent_age" id="parent_age_label"></label>
+                        <input type="number" id="parent_age" name="parent_age" value="{{ user.parent_age }}" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="region" id="region_label"></label>
+                        <select id="region" name="region">
+                            <option value="north" {% if user.region=='north' %}selected{% endif %} id="region_north_option"></option>
+                            <option value="south" {% if user.region=='south' %}selected{% endif %} id="region_south_option"></option>
+                            <option value="east" {% if user.region=='east' %}selected{% endif %} id="region_east_option"></option>
+                            <option value="west" {% if user.region=='west' %}selected{% endif %} id="region_west_option"></option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="child_age" id="child_age_label"></label>
+                        <input type="number" id="child_age" name="child_age" value="{{ user.child_age }}">
+                    </div>
+                    <div class="input-group">
+                        <label for="gender" id="child_gender_label"></label>
+                        <select id="gender" name="gender">
+                            <option value="male" {% if user.gender=='male' %}selected{% endif %} id="gender_male_option"></option>
+                            <option value="female" {% if user.gender=='female' %}selected{% endif %} id="gender_female_option"></option>
+                        </select>
+                    </div>
+                </div>
+                
+
+                <label for="diagnosis" id="child_diagnosis_label"></label>
+                <select id="diagnosis" name="diagnosis">
+                    <option value="autism" {% if user.diagnosis=='autism' %}selected{% endif %} id="diagnosis_autism_option"></option>
+                    <option value="aspergers" {% if user.diagnosis=='aspergers' %}selected{% endif %} id="diagnosis_aspergers_option"></option>
+                    <option value="pdd-nos" {% if user.diagnosis=='pdd-nos' %}selected{% endif %} id="diagnosis_pdd_nos_option"></option>
+                    <option value="rett" {% if user.diagnosis=='rett' %}selected{% endif %} id="diagnosis_rett_option"></option>
+                    <option value="cdd" {% if user.diagnosis=='cdd' %}selected{% endif %} id="diagnosis_cdd_option"></option>
+                </select><br>
+
+                <button type="submit" id="update_profile_button"></button>
+            </form>
+        </div>
+    </main>
+
+    <div class="footer">
+        <h2 id="questions_call"></h2>
+
+        <div class="row">
+            <div class="col">
+                <a id="footer_faq" href="#"></a>
+                <a id="footer_support" href="#"></a>
+                <a id="footer_privacy" href="#"></a>
+                <a id="footer_terms" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_account" href="#"></a>
+                <a id="footer_how_it_works" href="#"></a>
+                <a id="footer_corporate_information" href="#"></a>
+                <a id="footer_partners" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_media_centre" href="#"></a>
+                <a id="footer_about_us" href="#"></a>
+                <a id="footer_contact_us" href="#"></a>
+            </div>
+        </div>
+
+        <p class="copyright-text" id="footer_copyright"></p>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            const element = document.getElementById(key);
+                            if (element) {
+                                element.innerText = data[key];
+                            }
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'ar';
+            setLanguage(defaultLang);
+        });
+
+        window.addEventListener('scroll', function () {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

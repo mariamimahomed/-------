@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="./Assets/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <link rel="stylesheet" href="/static/css/styleee2.css"> 
+    <title id="login_title"></title>
+    <style>
+        /* Flexbox for navigation */
+        label::after {
+            content: '';
+            font-size: 34px;
+            position: absolute;
+            right: 20px;
+            transition: transform 0.5s;
+        }
+
+        .tab-switch-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab-switch {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background-color: #e0e0e0;
+            /* Light grey background */
+            color: #333;
+            /* Dark text color */
+            border-radius: 4px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab-switch:hover,
+        .tab-switch.active {
+            background-color: #3a6e7c;
+            /* Darker color when active or hovered */
+            color: white;
+            /* White text when active */
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="number"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <a href="/" class="logo">
+                <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+            </a>
+            <ul class="right">
+                <li><a style="color: rgb(0, 0, 0);" id="nav_about_homepage" href="/about"></a></li>
+                <li><a style="color: rgb(0, 0, 0);" id="nav_dashboard_homepage" href="/dashboard"></a></li>
+                <li><a style="color: rgb(0, 0, 0);" id="nav_test_homepage" href="/predict"></a></li>
+                <li><a style="color: rgb(0, 0, 0);" id="nav_conditions_homepage" href="/conditions"></a></li>
+                <li><a style="color: rgb(0, 0, 0);" id="nav_login_homepage" href="/login"></a></li>
+                <!-- Language Switcher Dropdown -->
+                <div class="language-switcher icon-container">
+                    <button><i class="fas fa-globe"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="setLanguage('en')">English</a>
+                        <a href="#" onclick="setLanguage('ar')">العربية</a>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="header"><br><br><br><br><br><br>
+        <div class="container">
+            <div class="tab-switch-container">
+                <button id="loginButton" class="tab-switch active" onclick="showLogin()"><span
+                        id="login_heading"></span></button>
+                <button id="signUpButton" class="tab-switch" onclick="showSignUp()"><span
+                        id="signup_heading"></span></button>
+            </div>
+
+            <div id="loginForm" class="form-content">
+                <h2 id="login_heading"></h2>
+                <form method="POST" action="/login">
+                    <input type="hidden" name="action" value="login">
+                    <label for="username" id="username_label"></label>
+                    <input type="text" id="username" name="username" required>
+
+                    <label for="password" id="password_label"></label>
+                    <input type="password" id="password" name="password" required>
+
+                    <button type="submit" id="login_button"></button>
+                </form>
+
+            </div>
+
+            <div id="signUpForm" class="form-content" style="display:none;">
+                <h2 id="signup_heading"></h2>
+                <form method="POST" action="/login">
+                    <input type="hidden" name="action" value="signup">
+                    <label for="email" id="email_label"></label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="username" id="username_label1"></label>
+                    <input type="text" id="username" name="username" required>
+
+                    <label for="password" id="password_label1"></label>
+                    <input type="password" id="password" name="password" required>
+
+                    <button type="submit" id="signup_button"></button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2 id="questions_call"></h2>
+
+        <div class="row">
+            <div class="col">
+                <a id="footer_faq" href="#"></a>
+                <a id="footer_support" href="#"></a>
+                <a id="footer_privacy" href="#"></a>
+                <a id="footer_terms" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_help_centre" href="#"></a>
+                <a id="footer_careers" href="#"></a>
+                <a id="footer_cookie_preferences" href="#"></a>
+                <a id="footer_legal_notices" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_account" href="#"></a>
+                <a id="footer_how_it_works" href="#"></a>
+                <a id="footer_corporate_information" href="#"></a>
+                <a id="footer_partners" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_media_centre" href="#"></a>
+                <a id="footer_about_us" href="#"></a>
+                <a id="footer_contact_us" href="#"></a>
+            </div>
+        </div>
+
+        <p class="copyright-text" id="footer_copyright"></p>
+    </div>
+
+    <script>
+        function showLogin() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('signUpForm').style.display = 'none';
+            document.getElementById('loginButton').classList.add('active');
+            document.getElementById('signUpButton').classList.remove('active');
+        }
+
+        function showSignUp() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('signUpForm').style.display = 'block';
+            document.getElementById('signUpButton').classList.add('active');
+            document.getElementById('loginButton').classList.remove('active');
+        }
+
+        function selectLanguage(language) {
+            document.getElementById('language').value = language;
+            document.getElementById('english').classList.remove('selected');
+            document.getElementById('arabic').classList.remove('selected');
+            document.getElementById(language).classList.add('selected');
+        }
+
+        window.addEventListener('scroll', function () {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function setLanguage(lang) {
+            console.log(`Setting language to: ${lang}`);
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => {
+                    console.log(`Response status: ${response.status}`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    console.log('Loaded data:', data);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            let element = document.getElementById(key);
+                            if (element) {
+                                element.innerText = data[key];
+                            } else {
+                                console.log(`Element with id '${key}' not found.`);
+                            }
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+
+        // Load default language on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'ar';
+            setLanguage(defaultLang);
+        });
+    </script>
+</body>
+
+</html>

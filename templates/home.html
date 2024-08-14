@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <link rel="shortcut icon" href="./Assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/styleee2.css"> <!-- Updated CSS file -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <title id="page_title">Welcome</title>
+</head>
+
+<style>
+    
+    .header {
+        text-align: center;
+        height: 100vh;
+        /* Set the header to take up full viewport height */
+        background-image: url('/static/images/new_final.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center top;
+        position: relative;
+        z-index: 1;
+        margin-top: -5rem;
+        /* Adjust to pull the nav into the header */
+    }
+
+    .swiper-container {
+        width: 80%;
+        /* Reduce the width to make the container smaller */
+        height: 80%;
+        /* Adjust the height accordingly */
+        overflow: hidden;
+        margin: 0 auto;
+        /* Center the Swiper container */
+        border-radius: 10px;
+        /* Optional: Add rounded corners */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        /* Optional: Add a slight shadow */
+    }
+
+    .swiper-slide {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        /* Make the slide background transparent */
+        padding: 2rem;
+        border-radius: 10px;
+        /* Optional: Add rounded corners to each slide */
+    }
+
+    .transparent-slide {
+        background-color: rgba(255, 255, 255, 0);
+        /* 95% transparent */
+        color: white;
+    }
+
+    .slide-content {
+        text-align: center;
+        color: #000000;
+        /* Ensure text is visible on the transparent background */
+    }
+
+    .slide-content h1,
+    .slide-content h2 {
+        margin-bottom: 1rem;
+    }
+
+    .slide-content p {
+        margin-bottom: 1.5rem;
+    }
+
+    .slide-content img {
+        max-width: 300px;
+        /* Make images smaller */
+        height: auto;
+        margin-top: 1rem;
+    }
+
+    .swiper-pagination {
+
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: #000000;
+        /* Customize arrow colors */
+    }
+</style>
+
+<body>
+    <nav id="navbar">
+        <a href="/" class="logo">
+            <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+        </a>
+        <ul class="right">
+            <li><a style="color: rgb(0, 0, 0);" id="nav_about_homepage" href="/about"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_dashboard_homepage" href="/dashboard"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_test_homepage" href="/predict"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_conditions_homepage" href="/conditions"></a></li>
+            <li><a style="color: rgb(0, 0, 0);" id="nav_login_homepage" href="/login"></a></li>
+            <!-- Language Switcher Dropdown -->
+            <div class="language-switcher icon-container">
+                <button><i class="fas fa-globe"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setLanguage('en')">English</a>
+                    <a href="#" onclick="setLanguage('ar')">العربية</a>
+                </div>
+            </div>
+        </ul>
+    </nav>
+
+    <div class="header"><br><br><br><br><br>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- Welcome Slide -->
+                <div class="swiper-slide transparent-slide">
+                    <div class="slide-content">
+                        <h1 style="font-size: 3rem;" id="support_connect_empower"></h1>
+                    </div>
+                </div>
+                <!-- Feature 1 Slide -->
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <h2 id="connect_with_parents">Connect with Parents</h2>
+                        <p id="feature1_desc">Here you can connect with other parents and share experiences.</p>
+                        <img src="/static/images/feature-1.png" alt="feature-1">
+                    </div>
+                </div>
+                <!-- Feature 2 Slide -->
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <h2 id="access_tailored_resources">Access Tailored Resources</h2>
+                        <p id="feature2_desc">Discover resources tailored to your child's needs.</p>
+                        <img src="/static/images/feature-2.png" alt="feature-2">
+                    </div>
+                </div>
+                <!-- Feature 3 Slide -->
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <h2 id="personalized_learning_plans">Personalized Learning Plans</h2>
+                        <p id="feature3_desc">Create learning plans tailored to your child's unique needs.</p>
+                        <img src="/static/images/feature-3.png" alt="feature-3">
+                    </div>
+                </div>
+                <!-- Feature 4 Slide -->
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <h2 id="expert_guidance_anytime">Expert Guidance Anytime</h2>
+                        <p id="feature4_desc">Get advice from professionals and experienced parents anytime.</p>
+                        <img src="/static/images/feature-4.png" alt="feature-4">
+                    </div>
+                </div>
+            </div>
+            <!-- Add Pagination and Navigation Arrows -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div class="faq"><br><br>
+        <h2 id="faq_title">Frequently Asked Questions</h2>
+
+        <ul class="accordion">
+            <li>
+                <input type="radio" name="accordion" id="first">
+                <label for="first" id="faq_q1">What is ParentPals?</label>
+                <div class="content">
+                    <p id="faq_a1">ParentPals is a community platform connecting parents with resources and support.</p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="second">
+                <label for="second" id="faq_q2">Is it free?</label>
+                <div class="content">
+                    <p id="faq_a2">Yes, ParentPals is completely free to use.</p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="third">
+                <label for="third" id="faq_q3">How can it help my family?</label>
+                <div class="content">
+                    <p id="faq_a3">ParentPals provides tools, resources, and a community to support your family’s
+                        journey.</p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="fourth">
+                <label for="fourth" id="faq_q4">How do I get started?</label>
+                <div class="content">
+                    <p id="faq_a4">Simply sign up and start exploring the resources and connecting with other parents.
+                    </p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="fifth">
+                <label for="fifth" id="faq_q5">Is ParentPals suitable for children?</label>
+                <div class="content">
+                    <p id="faq_a5">ParentPals is designed for parents, but we also offer resources suitable for children
+                        under guidance.</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <h2 id="questions_call">Have Questions? Call us!</h2>
+
+        <div class="row">
+            <div class="col">
+                <a id="footer_faq" href="#">FAQ</a>
+                <a id="footer_support" href="#">Support</a>
+                <a id="footer_privacy" href="#">Privacy</a>
+                <a id="footer_terms" href="#">Terms</a>
+            </div>
+            <div class="col">
+                <a id="footer_account" href="#">My Account</a>
+                <a id="footer_how_it_works" href="#">How It Works</a>
+                <a id="footer_corporate_information" href="#">Corporate Information</a>
+                <a id="footer_partners" href="#">Partners</a>
+            </div>
+            <div class="col">
+                <a id="footer_media_centre" href="#">Media Centre</a>
+                <a id="footer_about_us" href="#">About Us</a>
+                <a id="footer_contact_us" href="#">Contact Us</a>
+            </div>
+        </div>
+
+        <p class="copyright-text" id="footer_copyright_homepage">© 2024 ParentPals. All rights reserved.</p>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function setLanguage(lang) {
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            let element = document.getElementById(key);
+                            if (element) {
+                                element.innerText = data[key];
+                            }
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+        // Load default language on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'ar';
+            setLanguage(defaultLang);
+
+            // Initialize Swiper
+            var swiper = new Swiper('.swiper-container', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+        });
+    </script>
+</body>
+
+</html>

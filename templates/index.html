@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/391827d54c.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <link rel="shortcut icon" href="./Assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/styleee2.css"> <!-- Updated CSS file -->
+    <title id="page_title"></title>
+</head>
+<style>
+    .header {
+    text-align: center;
+    height: 100vh; /* Set the header to take up full viewport height */
+    background-image: url('/static/images/new_final.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    position: relative;
+    z-index: 1;
+    margin-top: -5rem; /* Adjust to pull the nav into the header */
+}
+
+nav {
+    background-color: transparent; /* Start with a transparent nav */
+    display: flex;
+    padding: 1rem 2rem;
+    color: #060505;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+nav.scrolled {
+    background-color: #bdd1d038; /* Stable color when scrolled */
+}
+
+.header-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff; /* Ensure text is visible on the image background */
+}
+
+</style>
+
+<body>
+    <nav id="navbar">
+        <a href="/index" class="logo">
+            <img class="logo" src="/static/images/logo.png" alt="logo" style="max-width: 100px; height: auto;">
+        </a>
+        <ul>
+            {% if current_user.is_authenticated %}
+            <li><a id="nav_match" href="/match"></a></li>
+            <li><a id="nav_mentors" href="/mentor"></a></li>
+            <li><a id="nav_community" href="/community"></a></li>
+    
+            <!-- Profile Icon Dropdown -->
+            <div class="profile-switcher icon-container">
+                <button><i class="fas fa-user"></i></button>
+                <div class="dropdown-content">
+                    <a id="nav_update_profile" href="/profile"></a>
+                    <a id="nav_logout" href="/logout"></a>
+                </div>
+            </div>
+    
+            <!-- Chat Icon -->
+            <li class="icon-container chat-icon">
+                <a href="/mychats">
+                    <i class="fas fa-comment"></i> <!-- Font Awesome Chat Icon -->
+                </a>
+            </li>
+            {% else %}
+            <li><a id="nav_login" href="/login"></a></li>
+            {% endif %}
+    
+            <!-- Language Switcher Dropdown -->
+            <div class="language-switcher icon-container">
+                <button><i class="fas fa-globe"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setLanguage('en')">English</a>
+                    <a href="#" onclick="setLanguage('ar')">العربية</a>
+                </div>
+            </div>
+        </ul>
+    </nav>
+    
+
+    <div class="header">
+        <div class="header-content">
+            <h1 id="welcome_message"></h1>
+            <h3 id="sub_welcome_message"></h3>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="row">
+            <div class="text-col">
+                <h2 id="connect_title"></h2>
+                <p id="connect_desc"></p>
+            </div>
+            <div class="img-col">
+                <img src="/static/images/feature-1.png" alt="feature-1" style="max-width: 400px; height: auto;">
+                <!-- Update with relevant image -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="img-col">
+                <img src="/static/images/feature-2.png" alt="feature-2" style="max-width: 400px; height: auto;">
+                <!-- Update with relevant image -->
+            </div>
+            <div class="text-col">
+                <h2 id="resources_title"></h2>
+                <p id="resources_desc"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-col">
+                <h2 id="plans_title"></h2>
+                <p id="plans_desc"></p>
+            </div>
+            <div class="img-col">
+                <img src="/static/images/feature-3.png" alt="feature-3" style="max-width: 400px; height: auto;">
+                <!-- Update with relevant image -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="img-col">
+                <img src="/static/images/feature-4.png" alt="feature-4" style="max-width: 400px; height: auto;">
+                <!-- Update with relevant image -->
+            </div>
+            <div class="text-col">
+                <h2 id="guidance_title"></h2>
+                <p id="guidance_desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq">
+        <h2 id="faq_title"></h2>
+
+        <ul class="accordion">
+            <li>
+                <input type="radio" name="accordion" id="first">
+                <label for="first" id="faq_q1"></label>
+                <div class="content">
+                    <p id="faq_a1"></p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="second">
+                <label for="second" id="faq_q2"></label>
+                <div class="content">
+                    <p id="faq_a2"></p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="third">
+                <label for="third" id="faq_q3"></label>
+                <div class="content">
+                    <p id="faq_a3"></p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="fourth">
+                <label for="fourth" id="faq_q4"></label>
+                <div class="content">
+                    <p id="faq_a4"></p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="accordion" id="fifth">
+                <label for="fifth" id="faq_q5"></label>
+                <div class="content">
+                    <p id="faq_a5"></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <h2 id="questions_call"></h2>
+
+        <div class="row">
+            <div class="col">
+                <a id="footer_faq" href="#"></a>
+                <a id="footer_support" href="#"></a>
+                <a id="footer_privacy" href="#"></a>
+                <a id="footer_terms" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_account" href="#"></a>
+                <a id="footer_how_it_works" href="#"></a>
+                <a id="footer_corporate_information" href="#"></a>
+                <a id="footer_partners" href="#"></a>
+            </div>
+            <div class="col">
+                <a id="footer_media_centre" href="#"></a>
+                <a id="footer_about_us" href="#"></a>
+                <a id="footer_contact_us" href="#"></a>
+            </div>
+        </div>
+
+        <p class="copyright-text" id="footer_copyright"></p>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function setLanguage(lang) {
+            fetch(`/static/lang/${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('lang', lang);
+                    for (let key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            let element = document.getElementById(key);
+                            if (element) {
+                                element.innerText = data[key];
+                            }
+                        }
+                    }
+                })
+                .catch(error => console.error('Error loading language file:', error));
+        }
+
+        // Load default language on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultLang = localStorage.getItem('lang') || 'ar';
+            setLanguage(defaultLang);
+        });
+    </script>
+</body>
+
+</html>
